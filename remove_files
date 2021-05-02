@@ -1,0 +1,43 @@
+#!node
+// Get all the file extension types that need to be deleted
+const [, , ...args] = process.argv;
+
+if (args.length < 1) {
+  console.log(`Please enter file extensions to be removed!`);
+  return;
+}
+
+const fs = require("fs");
+const path = require("path");
+const { promisify } = require("util");
+// convert stat into then catch
+const stat = promisify(fs.stat);
+const unlink = promisify(fs.unlink);
+
+const currentDirectory = process.cwd();
+
+async function deleteFiles(directory) {
+  fs.readdir(directory, (err, files) => {
+    if (err) console.log(`Error reading files from this directory`);
+    files.forEach((filePath) => {
+      filePath = path.resolve(directory, filePath).toString();
+      stat(filePath).then((s) => {
+        if (s.isDirectory()) {
+          deleteFiles(filePath);
+        } else {
+          if (args.includes(path.extname(filePath))) {
+            unlink(filePath)
+              .then((_) => {})
+              .catch((err) => {
+                console.log(`Error deleting ${filePath}`);
+              });
+          }
+        }
+      });
+    });
+  });
+}
+
+deleteFiles(currentDirectory).then((_) => {
+  console.log(`Deleted files of type ${args}`);
+});
