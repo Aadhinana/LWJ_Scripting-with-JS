@@ -1,0 +1,15 @@
+{
+  "name": "utility-functions",
+  "version": "1.0.0",
+  "description": "This is an attemp to write basic shell scripts with JS as show on Learn with Jason",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "del": "^6.0.0",
+    "tiny-glob": "^0.2.9"
+  }
+}
