@@ -14,4 +14,8 @@ I didn't know you can write scripts with JS. Makes sense that you can actually w
 
 ---
 
-`remove_node_moduels` => remove all node_modeules dir recursively
+`remove_nm` => remove all node_modeules dir recursively
+
+---
+
+`helpers` => will list out what are available
