@@ -1,4 +1,4 @@
-#!node
+#! /usr/bin/env node
 // Get all the file extension types that need to be deleted
 const [, , ...args] = process.argv;
 

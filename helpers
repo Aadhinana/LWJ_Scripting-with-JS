@@ -1,0 +1,18 @@
+#! /usr/bin/env node
+
+const fs = require("fs");
+const path = require("path");
+
+fs.readdir(__dirname, (err, content) => {
+  const files = content;
+  files.forEach((file) => {
+    if (
+      path.extname(file) === "" &&
+      !fs.lstatSync(file).isDirectory() &&
+      file !== ".gitignore" &&
+      file !== "helpers"
+    ) {
+      console.log(file);
+    }
+  });
+});

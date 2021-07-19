@@ -1,5 +1,5 @@
-#! node
-
+#! /usr/bin/env node
+// Removes all node_modules in a directory recursively
 const del = require("del");
 
 // Delete ndoe_modules in the given directory recursively
