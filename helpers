@@ -3,16 +3,19 @@
 const fs = require("fs");
 const path = require("path");
 
-fs.readdir(__dirname, (err, content) => {
+// Path to where your scripts are stored.
+const filesPath = path.resolve("/Users/aadhi/.js");
+
+fs.readdir(filesPath, { withFileTypes: true }, (err, content) => {
   const files = content;
   files.forEach((file) => {
     if (
-      path.extname(file) === "" &&
-      !fs.lstatSync(file).isDirectory() &&
-      file !== ".gitignore" &&
-      file !== "helpers"
+      !file.isDirectory() &&
+      path.extname(file.name) === "" &&
+      file.name !== ".gitignore" &&
+      file.name !== "helpers"
     ) {
-      console.log(file);
+      console.log(file.name);
     }
   });
 });
